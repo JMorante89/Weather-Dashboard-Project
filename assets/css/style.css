@@ -25,6 +25,7 @@ header{
     max-width: 65vw;
     margin: 0 auto;
     padding-top: 75px;
+    
 }
 
 .forecast{
@@ -32,10 +33,31 @@ header{
     justify-content: space-between;
     align-items: center;
     margin-top: 50px;
+    padding: auto;
+    flex-wrap: wrap;
 }
 
 .day{
+    margin: 35px auto;
+}
 
+.history{
+    width: 90%;
+    max-width: 65vw;
+    margin: 0 auto;
+    padding-top: 55px;
+}
+
+.search-history{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: auto;
+    flex-wrap: wrap;
+}
+
+.city-history{
+    margin: 35px auto;
 }
 
 .card{
