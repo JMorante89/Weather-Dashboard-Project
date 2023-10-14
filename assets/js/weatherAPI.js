@@ -27,7 +27,7 @@ async function getCurrentWeather ({lat, lon}) {
     // This gets the current weather for the city
     const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${api}`);
     var data = await res.json();
-    const res2 = await fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${api}`);
+    const res2 = await fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${api}`);
     var cityData = (await res2.json())[0];
     console.log(cityData);
     data = {

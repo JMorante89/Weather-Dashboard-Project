@@ -32,15 +32,11 @@ function renderWeather ({weather}) {
     var html = `
         <img src="${returnWeatherIcon(weather.icon)}" alt="${weather.description}" class="weather-icon">
         <h1 class="temp">${weather.temp}°F</h1>
-        <h2 class="city">${weather.city}, ${weather.state}</h2>
-        <div>
-            <h2 class="humitdiy">Humidity: ${weather.humidity}%</h2>
-            <img src="./assets/images/humidity.png" alt="humidity" class="weather-icon">
-        </div>
-        <div>
-            <h2 class="wind-speed">Wind Speed: ${weather.windSpeed} mph</h2>
-            <img src="./assets/images/wind.png" alt="wind" class="weather-icon">
-        </div>
+        <h1 class="city">${weather.city}, ${weather.state}</h1>
+        <h3 class="humidity">Humidity: ${weather.humidity}% 
+        <img src="./assets/images/humidity.png" alt="humidity" class="display-image"></h3>
+        <h3 class="wind-speed">Wind Speed: ${weather.windSpeed}mph 
+        <img src="./assets/images/wind.png" alt="wind" class="display-image"></h3>
     `;
     $('.weather').html(html);
 }
@@ -56,10 +52,10 @@ function renderWeekdayWeather ({weekdayWeather}) {
         html += `
             <div class="day">
                 <h2>${getDay(weather.date)}</h2>
-                <img src="${returnWeatherIcon(weather.icon)}" alt="${weather.description}" class="weather-icon">
                 <h3>${weather.temp}°F</h3>
-                <h4 class="humitdiy">Humidity: ${weather.humidity}%</h4>
-                <h4 class="wind-speed">Wind Speed: ${weather.windSpeed}mph</h4>
+                <img src="${returnWeatherIcon(weather.icon)}" alt="${weather.description}" class="weather-icon">
+                <h4 class="humitdiy">${weather.humidity}%<image src="./assets/images/humidity.png" class="display-image"></h4>
+                <h4 class="wind-speed">${weather.windSpeed}mph<image src="./assets/images/wind.png" class="display-image"></h4>
             </div>
         `;
     });
