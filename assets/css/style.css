@@ -20,12 +20,20 @@ header{
     align-items: center;
 }
 
+li{
+    padding: 0 20px;
+}
+
 .container{
     width: 90%;
     max-width: 65vw;
     margin: 0 auto;
     padding-top: 75px;
-    
+}
+
+.display-image{
+    height: 15px;
+    width: 15px;
 }
 
 .forecast{
