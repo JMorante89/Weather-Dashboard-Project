@@ -22,6 +22,14 @@ header{
 
 li{
     padding: 0 20px;
+    text-align: center;
+    list-style: none;
+    border-radius: 20px;
+    border: 1px solid whitesmoke;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 10px auto auto auto;
 }
 
 .container{
@@ -29,6 +37,10 @@ li{
     max-width: 65vw;
     margin: 0 auto;
     padding-top: 75px;
+}
+
+.search-button{
+    margin: 15px auto;
 }
 
 .display-image{
