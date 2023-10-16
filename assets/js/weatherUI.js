@@ -2,6 +2,8 @@ import {getForecast} from './weatherAPI.js';  // import the getForecast function
 
 var searchHistory = [];
 
+// This functtion runs when the document is ready. It sets up event handlers for the search form and search history, 
+// loads the search history from local storage, and displays it on the webpage.
 $(function (){
     $('.search').on('submit', handleWeatherSearch);
     $('.search-history').on('click', 'li', handleSearchHistoryClick);
@@ -9,7 +11,8 @@ $(function (){
     renderSearchHistory();
 });
 
-
+// This function handles weather search by preventing the default form submission, fetching weather data for a city, 
+// rendering the current weather, date, weekday weather, and adding the search to the search history.
 async function handleWeatherSearch (event) {
     event.preventDefault();
     var cityName = $('#city-search').val();
@@ -20,6 +23,7 @@ async function handleWeatherSearch (event) {
     addSearchHistory(forecast.weather.city, forecast.weather.state)
 };
 
+// This function renders the current date by converting a timestamp to a date object and formatting it.
 function renderDate ({weather}) {
     var date = new Date(weather.date* 1000);
     var month = date.getMonth() + 1;
@@ -28,6 +32,7 @@ function renderDate ({weather}) {
     $('#todays-date').text(`${month}/${day}/${year}`);
 };
 
+// This function renders the current date by converting a timestamp to a date object and formatting it.
 function renderWeather ({weather}) {
     var html = `
         <img src="${returnWeatherIcon(weather.icon)}" alt="${weather.description}" class="weather-icon">
@@ -41,6 +46,7 @@ function renderWeather ({weather}) {
     $('.weather').html(html);
 }
 
+// This function renders the weather forecast for the next few days by iterating through the weekdayWeather data and generating HTML for each day.
 function renderWeekdayWeather ({weekdayWeather}) {
     var html = '';
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -62,6 +68,7 @@ function renderWeekdayWeather ({weekdayWeather}) {
     $('.forecast').html(html);
 };
 
+// This function returns the path to the weather icon based on the icon code.
 function returnWeatherIcon (icon) {
     icon = icon.slice(0, -1);
     var icons = {
@@ -78,10 +85,13 @@ function returnWeatherIcon (icon) {
     return icons[icon];
 };
 
+// This function updates the search history in local storage by converting the searchHistory array to a JSON string.
 function updateLocalStorage () {
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 };
 
+// This function adds a search entry to the search history, ensuring that it doesn't exceed a maximum of 5 entries 
+// and updating the search history in local storage.
 function addSearchHistory (cityName, stateName) {
     if (searchHistory.find(location => location.city === cityName)) {
         return;
@@ -94,6 +104,7 @@ function addSearchHistory (cityName, stateName) {
     renderSearchHistory();
 };
 
+// This function updates the search history array by getting the search history from local storage and parsing it from JSON.
 function updateSearchHistory () {
     searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
     if (!searchHistory) {
@@ -101,6 +112,7 @@ function updateSearchHistory () {
     }
 };
 
+// This function renders the search history by iterating through the search history array and generating HTML for each entry.
 function renderSearchHistory () {
     var html = '';
     searchHistory.forEach(function (location) {
@@ -109,6 +121,7 @@ function renderSearchHistory () {
     $('.search-history').html(html);
 };
 
+// This function handles a click on an item in the search history, fetching the weather data for the selected city and updating the displayed information.
 async function handleSearchHistoryClick (event) {
     var cityName = event.target.textContent;
     var forecast = await getForecast(cityName);

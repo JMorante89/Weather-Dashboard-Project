@@ -1,5 +1,6 @@
 var api = 'ee78ea65beb3a2a3c7c595cb6693d92c';
 
+// This function gets the location of the city
 async function getCityLocation (cityName) {
     var limit = 5;
     return fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=${limit}&appid=${api}`)
@@ -23,8 +24,8 @@ async function getCityLocation (cityName) {
     })
 }
 
+// This function gets the current weather for the city
 async function getCurrentWeather ({lat, lon}) {
-    // This gets the current weather for the city
     const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${api}`);
     var data = await res.json();
     const res2 = await fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${api}`);
@@ -43,8 +44,8 @@ async function getCurrentWeather ({lat, lon}) {
     return data;
 }
 
+// This function gets the weather for the next 5 days
 async function getWeekdayWeather ({lat, lon}) {
-    // This gets the current weather for the city
     const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${api}`);
     var data = await res.json();
     data = data.list.filter(function (weather) {
@@ -63,7 +64,7 @@ async function getWeekdayWeather ({lat, lon}) {
     return data;
 }
 
-
+// This function gets the location, current weather, and weekday weather for a city
 async function getForecast (cityName) {
     var location = await getCityLocation(cityName);
     var weather = await getCurrentWeather(location);
